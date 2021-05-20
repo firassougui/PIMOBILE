@@ -24,7 +24,6 @@ public class Publication {
 
     public Publication() {
     }
-
     public Publication(int id, String titre, String description, ArrayList<Post> Comments) {
         this.id = id;
         this.titre = titre;
@@ -78,7 +77,7 @@ public class Publication {
     }
 
     public void setCategorie_id(int categorie_id) {
-        this.categorie_id = categorie_id;
+        this.categorie_id= categorie_id;
     }
 
     public int getVus() {

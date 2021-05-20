@@ -27,8 +27,8 @@ public class HomeForm extends Form {
         setLayout(BoxLayout.y());
 
         add(new Label("Choose an option"));
-        Button btnAddForum = new Button("Add Forum");
-        Button btnListForums = new Button("List Forum");
+        Button btnAddForum = new Button("Add Post");
+        Button btnListForums = new Button("List Post");
 
         btnAddForum.addActionListener(e -> new AddPublicationForm(current).show());
         btnListForums.addActionListener(e -> new ListPublicForm(current).show());

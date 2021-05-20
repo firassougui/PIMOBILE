@@ -43,22 +43,22 @@ public class AddPublicationForm extends Form implements LocalNotificationCallbac
                     Dialog.show("Alert", "Please fill all the fields", new Command("OK"));
                 } else {
                     try {
-                        Publication f = new Publication(tfDescription.getText(), tfTitle.getText());
-                        if (ServicePublication.getInstance().addPub(f)) {
+                        Publication f = new Publication(tfTitle.getText(),tfDescription.getText());
+                        if (!ServicePublication.getInstance().addPub(f)) {
+                            Dialog.show("ERROR", "Server error", new Command("OK"));
+                        } else {
                             LocalNotification n = new LocalNotification();
                             n.setId("demo-notification");
                             n.setAlertBody("It's time to take a break and look at me");
                             n.setAlertTitle("Break Time!");
-                           // n.setAlertSound("/notification_sound_bells.mp3"); //file name must begin with notification_sound
+                            // n.setAlertSound("/notification_sound_bells.mp3"); //file name must begin with notification_sound
                             
                             Display.getInstance().scheduleLocalNotification(
                                     n,
                                     System.currentTimeMillis() , // fire date/time
                                     LocalNotification.REPEAT_MINUTE // Whether to repeat and what frequency
                             );
-                           localNotificationReceived(n.getId());
-                        } else {
-                            Dialog.show("ERROR", "Server error", new Command("OK"));
+                            localNotificationReceived(n.getId());
                         }
                     } catch (NumberFormatException e) {
                         Dialog.show("ERROR", "Status must be a number", new Command("OK"));

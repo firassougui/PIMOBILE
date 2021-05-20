@@ -25,24 +25,24 @@ import java.util.Iterator;
 
 /**
  *
- * @author bhk
+ * @author M'Amine
  */
 public class ListPublicForm extends Form {
 
-    public ArrayList<Publication> forums;
+    public ArrayList<Publication> publications;
     Form current;
 
     public ListPublicForm(Form previous) {
         setTitle("List publications");
 
-        forums = ServicePublication.getInstance().getAllForums();
-        for (Publication obj : forums) {
+        publications = ServicePublication.getInstance().getAllPubs();
+        for (Publication obj : publications) {
             setLayout(BoxLayout.y());
 
             Button spTitle = new Button();
             SpanLabel sp = new SpanLabel();
-            Button Delete = new Button("D");
-            Button Modif = new Button("M");
+            Button Delete = new Button("Delete");
+            Button Modif = new Button("Update");
 
             spTitle.setText("Titre : " + obj.getTitre());
             spTitle.addActionListener(e -> {

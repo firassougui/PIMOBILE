@@ -42,7 +42,7 @@ public class ListPostForm extends Form {
     public ArrayList<Post> posts;
     Form current;
     // static  TextField tfIdF = new TextField();
-//liste des post (forum id ) 
+    //liste des post (forum id ) 
 
     public ListPostForm(Form previous, Publication f) {
 
