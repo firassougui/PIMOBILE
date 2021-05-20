@@ -6,6 +6,8 @@
 package com.mycompany.gui;
 
 import com.codename1.components.ImageViewer;
+import com.codename1.media.Media;
+import com.codename1.media.MediaManager;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -14,6 +16,8 @@ import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -21,6 +25,7 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.spinner.Picker;
 import com.mycompany.entities.Evenement;
 import com.mycompany.services.ServiceEvenement;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 /**
@@ -44,7 +49,7 @@ public class Updevent extends BaseForm {
          System.out.println(p.getId());
 
      getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_ARROW_BACK, e -> prev.showBack());
-        this.setTitle("Details");
+        this.setTitle("Modifier");
         this.setLayout(BoxLayout.y());
 
         Container center = new Container(new BoxLayout(BoxLayout.Y_AXIS));
@@ -69,7 +74,6 @@ public class Updevent extends BaseForm {
         
         Picker date_start =new Picker();
         date_start.setType(Display.PICKER_TYPE_DATE_AND_TIME);
-        date_start.setDate(p.getDate_start());
         date_start.setUIID("SignUpField");
         Container row6 = new Container(new GridLayout(1, 2));
           
@@ -78,7 +82,7 @@ public class Updevent extends BaseForm {
         
          Picker date_end =new Picker();
         date_end.setType(Display.PICKER_TYPE_DATE_AND_TIME);
-        date_end.setSelectedString(String.valueOf(p.getDate_end()));
+    
         date_end.setUIID("SignUpField");
           Container row7 = new Container(new GridLayout(1, 2));
           
@@ -146,6 +150,33 @@ public class Updevent extends BaseForm {
      
         btnC.add(Ajouter);
         this.add(btnC);
+                                                Ajouter.addActionListener(new ActionListener (){
+                            @Override
+                            public void actionPerformed ( ActionEvent evt ){
+                                      //  System.out.println(FilenameInserver);
+                                      
+                                Media m;
+                                try {
+                                    m = MediaManager.createMedia("audio/done.mp3", true);
+                                    m.play();
+                                } catch (IOException ex) {
+                                   
+                                }
+                                
+                                p.setTitre(titre.getText());
+                                p.setDate_start(date_start.getDate());
+                                p.setDate_end(date_end.getDate());
+                                p.setNombre_par(Integer.parseInt(nbpar.getText()));
+                                p.setId_type(Integer.parseInt(type.getText()));
+                                p.setDescription(description.getText());
+                                
+                                
+                                
+            ad.modifierevent(p);
+
+//Adresse a = new Adresse (adresse.getText(),Pays.getText(),Comp.getText(),cp.getText(),ville.getText());
+                            }
+                            });
     }
 
 //-- DON'T EDIT BELOW THIS LINE!!!

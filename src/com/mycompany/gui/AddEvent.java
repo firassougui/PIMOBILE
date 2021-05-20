@@ -78,7 +78,7 @@ public class AddEvent extends BaseForm {
 
         getToolbar().setTitleComponent(
                 FlowLayout.encloseCenterMiddle(
-                        new Label("Ajout Depot ", "Title")
+                        new Label("Ajout evenement ", "Title")
                 )
         );
 
@@ -212,7 +212,7 @@ public class AddEvent extends BaseForm {
                        System.out.println("pathhhh:" + file);
                        String path = file.substring(7);
                        System.out.println(path);
-                       FilenameInserver = uploadservices.uploadImage(path);
+                       FilenameInserver = path;
                        System.out.println("nom image" + FilenameInserver);
                        
                    }
@@ -220,7 +220,7 @@ public class AddEvent extends BaseForm {
                
                Media m;
                try {
-                   m = MediaManager.createMedia("audio/browse.mp3", false);
+                   m = MediaManager.createMedia("audio/browse.mp3", true);
                    m.play();
                } catch (IOException ex) {
                    
@@ -235,7 +235,7 @@ public class AddEvent extends BaseForm {
                                       
                                 Media m;
                                 try {
-                                    m = MediaManager.createMedia("audio/done.mp3", false);
+                                    m = MediaManager.createMedia("audio/done.mp3", true);
                                     m.play();
                                 } catch (IOException ex) {
                                    

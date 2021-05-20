@@ -12,6 +12,8 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.util.Resources;
+import java.io.IOException;
+
 
 /**
  * GUI builder created Form
@@ -52,9 +54,21 @@ public class BaseForm extends Form {
        
         
        
-        getToolbar().addCommandToSideMenu("Produits", trendingImage, e -> new EventsForm(res).show());
-          getToolbar().addCommandToSideMenu("Produitback", trendingImage, e -> new EventsBack(res).show());
-            getToolbar().addCommandToSideMenu("Produits", trendingImage, e -> new EventsBack(res).show());
+        getToolbar().addCommandToSideMenu("Evenements", trendingImage, e -> new EventsForm(res).show());
+          getToolbar().addCommandToSideMenu("Evenementsback", trendingImage, e -> {
+           try {
+               new EventsBack(res).show();
+           } catch (IOException ex) {
+               
+           }
+       });
+            getToolbar().addCommandToSideMenu("Produits", trendingImage, e -> {
+           try {
+               new EventsBack(res).show();
+           } catch (IOException ex) {
+               
+           }
+       });
     
         
              // spacer

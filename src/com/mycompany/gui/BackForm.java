@@ -17,6 +17,8 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import java.io.IOException;
+
 
 /**
  * GUI builder created Form
@@ -67,7 +69,13 @@ public class BackForm extends com.codename1.ui.Form {
                         new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
         ));
         
-        tb.addMaterialCommandToSideMenu("Evenemts", FontImage.MATERIAL_UPDATE, e -> new EventsBack(res).show());
+        tb.addMaterialCommandToSideMenu("Evenemts", FontImage.MATERIAL_UPDATE, e -> {
+            try {
+                new EventsBack(res).show();
+            } catch (IOException ex) {
+              
+            }
+        });
    
     }
 //-- DON'T EDIT ABOVE THIS LINE!!!

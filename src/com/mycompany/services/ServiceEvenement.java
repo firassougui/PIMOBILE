@@ -139,7 +139,7 @@ p.setPhoto(obj.get("photo").toString());
     }
      
      public ArrayList<Evenement> getAllProduct() {
-        String url = "http://192.168.146.1:8000/partici";
+        String url = "http://192.168.1.5:8000/partici";
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -160,7 +160,7 @@ p.setPhoto(obj.get("photo").toString());
       // final User me = new User();
          
 String Url = "http://192.168.1.5:8000/participation";
-String url2 = "http://192.168.146.1/participation?idEmployer=1&idEvent="+id;
+String url2 = "http://192.168.1.5:8000/participation?idEmployer=1&idEvent="+id;
 
 
   
@@ -196,7 +196,7 @@ return true;
 
     }
       public boolean DeleteCandidature(int identif) {
-                String url = "http://192.168.146.1:8000/deleteevent/"+identif;
+                String url = "http://192.168.1.5:8000/deleteevent/"+identif;
                 req.setUrl(url);// Insertion de l'URL de notre demande de connexion        
         //req.setPost(true);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -217,7 +217,7 @@ return true;
         return resultOK;
     }
        public void addevent(int user, String titre, Date Date_strat, Date Date_end,int nbpar,int type, String description, String FilenameInserver) {
-        String url = "http://192.168.146.1:8000/eventsaj?user="
+        String url = "http://192.168.1.5:8000/eventsaj?user="
                 + user
                 +"&titre="
                 +titre
@@ -243,5 +243,33 @@ return true;
         });
         NetworkManager.getInstance().addToQueue(con);
     }
+       public boolean modifierevent(Evenement E)
+       {String url = "http://192.168.1.5:8000/updateevent?id="
+               +E.getId()
+               + "&titre="
+                +E.getTitre()
+                +"&date_start="
+                +E.getDate_start()
+                +"&date_end="
+                +E.getDate_start()
+                +"&nombrePar="
+                +E.getNombre_par()
+                +"&type="
+                +E.getId_type()
+                +"&description="
+                +E.getDescription();
+        req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+              resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueue(req);
+        return resultOK;
+               
+           
+       }
     
 }

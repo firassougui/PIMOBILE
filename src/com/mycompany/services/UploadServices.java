@@ -17,7 +17,7 @@ public class UploadServices {
     public String uploadImage(String Path) {
         String fileNameInServer = "";
 
-        FileUploader fu = new FileUploader("localhost/PIWEB/public/images/products");
+        FileUploader fu = new FileUploader("localhost/PIWEB/public/images/products/");
         try {
             //Upload
             fileNameInServer = fu.upload(Path);
@@ -25,7 +25,7 @@ public class UploadServices {
 
         } catch (java.io.IOException ex) {
         }
-        System.out.println(fileNameInServer);
+        System.out.println("file name "+fileNameInServer);
 
         return fileNameInServer;
 

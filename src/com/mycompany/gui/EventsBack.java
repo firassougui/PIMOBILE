@@ -6,6 +6,7 @@
 package com.mycompany.gui;
 
 import com.codename1.components.MultiButton;
+import com.codename1.io.Storage;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import static com.codename1.ui.Component.RIGHT;
@@ -26,6 +27,9 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.mycompany.entities.Evenement;
 import com.mycompany.services.ServiceEvenement;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -35,11 +39,11 @@ import java.util.ArrayList;
  */
 public class EventsBack extends BaseForm {
 Form current;
-    public EventsBack() {
+    public EventsBack() throws IOException {
         this(com.codename1.ui.util.Resources.getGlobalResources());
     }
     
-    public EventsBack(com.codename1.ui.util.Resources resourceObjectInstance) {
+    public EventsBack(com.codename1.ui.util.Resources resourceObjectInstance) throws IOException {
         current=this;
         initGuiBuilderComponents(resourceObjectInstance);
                
@@ -47,7 +51,7 @@ Form current;
       
         getToolbar().setTitleComponent(
                 FlowLayout.encloseCenterMiddle(
-                        new Label(" Produits ", "Title")
+                        new Label(" Events ", "Title")
                 )
         );
         installSidemenu(resourceObjectInstance);
@@ -82,13 +86,39 @@ FontImage  searchIcon= FontImage.createMaterial(FontImage.MATERIAL_ADD, s);
         // gui_Container_3_3.setUIID("List");
         //  gui_Container_3_3.setScrollableY(true);
         ArrayList<Evenement> products = ServiceEvenement.getInstance().getAllProduct();
+        String img= "";
+
+        Image imgg ;
+        Image image = null;
+        
         if (products != null) {
             for (Evenement p : products) {
                 System.out.println(p.getTitre());
+                
+                if(p.getPhoto()!=null | p.getPhoto().length()>0)
+                {
+                if ("file".equals(p.getPhoto().substring(0,4)))
+                {
       
+                 img=p.getPhoto();
+                 
+                 
+                }
+                else if("C:/".equals(p.getPhoto().substring(0,3)))
+                {
+                    img="file:/"+p.getPhoto();
+                }
+                else
+                    img="http://localhost/PIWEB/public/images/products/" + p.getPhoto();
+                }
                 EncodedImage placeholder = EncodedImage.createFromImage(Image.createImage(this.getWidth()/ 2 , this.getHeight() / 8, 0xFFFFFFFF), true);
-                Image image = URLImage.createToStorage(placeholder, p.getPhoto(), "http://localhost/PIWEB/public/images/products/" + p.getPhoto(), URLImage.RESIZE_SCALE_TO_FILL);
-                Container imgC = new Container();
+                
+           
+                   image = URLImage.createToStorage(placeholder, p.getPhoto(),img, URLImage.RESIZE_SCALE_TO_FILL);
+                  
+                  
+                
+                 Container imgC = new Container();
                 imgC.add(image);
                 FontImage  iconmodif= FontImage.createMaterial(FontImage.MATERIAL_MODE_EDIT, s);
                 FontImage  iconsuo= FontImage.createMaterial(FontImage.MATERIAL_DELETE, s);

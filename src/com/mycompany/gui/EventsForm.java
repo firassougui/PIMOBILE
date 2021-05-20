@@ -52,12 +52,30 @@ Form current;
         // gui_Container_3_3.setUIID("List");
         //  gui_Container_3_3.setScrollableY(true);
         ArrayList<Evenement> products = ServiceEvenement.getInstance().getAllProduct();
+        String img="";
         if (products != null) {
+            
             for (Evenement p : products) {
+                if(p.getPhoto()!=null | p.getPhoto().length()>0)
+                {
+                if ("file".equals(p.getPhoto().substring(0,4)))
+                {
+      
+                 img=p.getPhoto();
+                 
+                 
+                }
+                else if("C:/".equals(p.getPhoto().substring(0,3)))
+                {
+                    img="file:/"+p.getPhoto();
+                }
+                else
+                    img="http://localhost/PIWEB/public/images/products/" + p.getPhoto();
+                }
                 System.out.println(p.getTitre());
       
                 EncodedImage placeholder = EncodedImage.createFromImage(Image.createImage(this.getWidth()/ 2 , this.getHeight() / 8, 0xFFFFFFFF), true);
-                Image image = URLImage.createToStorage(placeholder, p.getPhoto(), "http://localhost/PIWEB/public/images/products/" + p.getPhoto(), URLImage.RESIZE_SCALE_TO_FILL);
+                Image image = URLImage.createToStorage(placeholder, p.getPhoto(), img, URLImage.RESIZE_SCALE_TO_FILL);
                 Container imgC = new Container();
                 imgC.add(image);
                 Button par = new Button("participer");
@@ -81,6 +99,15 @@ Form current;
                 
        
       mb.add(RIGHT, image);
+                      mb.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                     
+                        
+                        new DetailEvent(p,current).show();
+                    
+    }
+                });
       par.getAllStyles().setAlignment(Component.CENTER);
       
        par.addActionListener((e) -> {
