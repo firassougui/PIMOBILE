@@ -170,7 +170,13 @@ public class ServiceTask {
                 t.setTitre(obj.get("titre").toString());
                 t.setLieu(obj.get("lieu").toString());
                 t.setDescription(obj.get("description").toString());
-
+                t.setNom_entreprise(obj.get("nom_entreprise").toString());
+                 t.setPoste(obj.get("poste").toString());
+                t.setMedia(obj.get("media").toString());
+                float nbr_recru = Float.parseFloat(obj.get("nombre_recrutement").toString());
+                //int idd = Integer.parseInt(obj.get("id").toString());
+                 t.setNombre_recrutement((int)nbr_recru);
+                       t.setTaille_entreprise(obj.get("taille_entreprise").toString());
                 //Ajouter la tâche extraite de la réponse Json à la liste
                  tasks.add(t);
                 

@@ -31,25 +31,20 @@ import java.util.ArrayList;
  *
  * @author bhk
  */
-public class HomeForm extends Form {
+public class HomeFormEmployer extends Form {
 
     Form current;
     /*Garder traçe de la Form en cours pour la passer en paramètres 
     aux interfaces suivantes pour pouvoir y revenir plus tard en utilisant
     la méthode showBack*/
     
-    public HomeForm() {
-       Button btnAddTask = new Button("Add Offres");
+    public HomeFormEmployer() {
      
         current = this; //Récupération de l'interface(Form) en cours
         setTitle("Listes Des offres");
           
  
-        btnAddTask.addActionListener(e -> new AddTaskForm(current).show());       
-             
-
-
-          addAll(btnAddTask);
+      
         ArrayList<Opportunite>list=ServiceTask.getInstance().getAllTasks();
 Form previous;
        for (Opportunite Op: list)
@@ -74,7 +69,7 @@ Form previous;
         }
      }
 
-    private void addButton( Image img,int id,String titre ,String Lieu,String Desc,String nom_entre,String Taille,String poste,String media,int nbr,Opportunite Op) {
+    private void addButton( Image img,int id,String titre ,String Lieu,String Desc,String nom_entre,String Taille,String media,String poste,int nbr,Opportunite Op) {
         int height=Display.getInstance().convertToPixels(11.5f);
         int width=Display.getInstance().convertToPixels(15f);
         Button image=new Button(img.fill(width, height));
@@ -82,9 +77,8 @@ Form previous;
         image.setUIID("LabelSpan");
         Container cnt =new Container() ;
         cnt = (BorderLayout.west(image));
-        Button btnModif = new Button("Update Offres"); 
-       btnModif.addActionListener(e -> new UpdateOpporForm(current,id).show()); 
        
+        
                TextArea idd=new TextArea("Id : "+id);
         idd.setUIID("List opp");
         idd.setEditable(false);
@@ -101,12 +95,11 @@ Form previous;
            TextArea descr=new TextArea("Description : "+Desc);
         descr.setUIID("List opp");
         descr.setEditable(false);
-        
-         
-        TextArea nom_entreprise=new TextArea("Nom_entreprise : "+nom_entre);
+          TextArea nom_entreprise=new TextArea("Nom_entreprise : "+nom_entre);
         nom_entreprise.setUIID("List opp");
         nom_entreprise.setEditable(false);
-           TextArea taille=new TextArea("Taille : "+Taille);
+        
+             TextArea taille=new TextArea("Taille_entreprise : "+Taille);
         taille.setUIID("List opp");
         taille.setEditable(false);
         
@@ -117,14 +110,15 @@ Form previous;
         Media.setUIID("List opp");
         Media.setEditable(false);
         
-            TextArea Nbr=new TextArea("Nmbre_Recrutement : "+nbr);
+            TextArea Nbr=new TextArea("Nombre_Recrutement : "+nbr);
         Nbr.setUIID("List opp");
         Nbr.setEditable(false);
         
-        cnt.add(BorderLayout.EAST,BoxLayout.encloseY(btnModif,ta,lie,descr,nom_entreprise,taille,Poste,Media,Nbr));
+        cnt.add(BorderLayout.EAST,BoxLayout.encloseY(ta,lie,descr,nom_entreprise,taille,Poste,Media,Nbr));
+       
          add(cnt);
    
-            image.addActionListener(e -> new ListTasksForm(id).show());
+            image.addActionListener(e -> new ListTasksFormEmployer(id).show());
         
              
 

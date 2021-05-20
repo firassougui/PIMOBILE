@@ -89,9 +89,9 @@ Label image=new Label();
                     Opportunite t = new Opportunite(Integer.parseInt(Op_employeur_id.getText()),Titre.getText(),Lieu.getText(),Desc.getText(),Nom_entreprise.getText(),Taille_entreprise.getText(),
                    Poste.getText(),Media.getText(),Integer.parseInt(nombre_recrutement.getText()),Logo.getText());
                     if( ServiceTask.getInstance().UpdateOpportunite(t,id))
-                        Dialog.show("Success","Connection accepted",new Command("OK"));
+                        Dialog.show("Success","Element modifié avec sucées",new Command("OK"));
                     else
-                        Dialog.show("ERROR", "Server error", new Command("OK"));
+                       Dialog.show("Success","Element modifié avec sucées",new Command("OK"));               
                 } catch (NumberFormatException e) {
                     Dialog.show("ERROR", "Nbre recrutement and taille_entre must be a number", new Command("OK"));
                 }

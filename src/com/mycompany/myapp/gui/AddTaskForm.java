@@ -5,7 +5,6 @@
  */
 package com.mycompany.myapp.gui;
 
-import com.codename1.io.File;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
@@ -15,16 +14,19 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.entities.Opportunite;
-import com.mycompany.myapp.entities.Task;
 import com.mycompany.myapp.services.ServiceTask;
  
-import com.codename1.capture.Capture;
-import com.codename1.ui.Display;
+import com.codename1.io.FileSystemStorage;
+import com.codename1.io.Log;
+import com.codename1.ui.CN;
+import com.codename1.ui.util.ImageIO;
 import java.io.IOException;
- 
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  *
  * @author bhk
@@ -43,22 +45,13 @@ public class AddTaskForm extends Form{
                Button upload = new Button("UploadFile");
 Label image=new Label();
 
-    upload.addActionListener((ActionEvent evt) -> {
-        
-        String path=Capture.capturePhoto(Display.getInstance().getDisplayWidth(), -1);  
-        if(path!=null)
-        {
-            try {
-                Image img=Image.createImage(path);
-                
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        Logo.setText(path);
-     });
     
-         
+        
+        
+
+       
+    
+      
         TextField Titre = new TextField("","Titre");
         TextField Lieu= new TextField("", "Lieu");
         TextField Desc = new TextField("","Description");
@@ -103,5 +96,17 @@ Label image=new Label();
                 
     }
     
-    
+    protected String saveFileToDevice(String hi, String ext) throws IOException {
+        URI uri;
+        try {
+            uri = new URI(hi);
+            String path = uri.getPath();
+            int index = hi.lastIndexOf("/");
+            hi = hi.substring(index + 1);
+            return hi;
+        } catch (URISyntaxException ex) {
+        }
+        return "hh";
+    }
+
 }

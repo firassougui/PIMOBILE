@@ -117,7 +117,14 @@ public class ServiceTask1 {
              
                 //int idd = Integer.parseInt(obj.get("id").toString());
                 ca.setFonction(obj.get("fonction").toString());
-              
+                  ca.setType_contrat(obj.get("type_contrat").toString());
+                  ca.setHoraires(obj.get("horaires").toString());
+                  ca.setMode_salaire(obj.get("mode_salaire").toString());
+                  ca.setPeriode(obj.get("periode").toString());
+                   float annuel = Float.parseFloat(obj.get("annuel_mois").toString());
+                ca.setAnnuel_mois((int)annuel);
+                   
+                  
                 //Ajouter la tâche extraite de la réponse Json à la liste
                  tasks.add(ca);
               

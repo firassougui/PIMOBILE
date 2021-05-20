@@ -28,22 +28,19 @@ import java.util.ArrayList;
  *
  * @author bhk
  */
-public class ListTasksForm extends Form{
+public class ListTasksFormEmployer extends Form{
 Form previous;
  Form current;
            Button Preview;
 
  
-    public ListTasksForm(int id) {
+    public ListTasksFormEmployer(int id) {
  
-        ListTasksForm current = this; //Récupération de l'interface(Form) en cours
+        ListTasksFormEmployer current = this; //Récupération de l'interface(Form) en cours
         setTitle("Listes Des Candidatures");
-        Button btnAddCand= new Button("Add Candidatures");
+     
       
-             btnAddCand.addActionListener(e -> new AddCandidatureForm(current,id).show()); 
         
-   addAll(btnAddCand);
-      
          
         ArrayList<Candidature>list=ServiceTask1.getInstance().getAllTasks();
         for (Candidature Op: list)
@@ -55,8 +52,10 @@ Form previous;
          
          Button lim= new Button();
          
-         addButton(lim,id,Op.getId(),Op.getTitre_id(),Op.getFonction(),Op.getType_contrat(),Op.getHoraires(),Op.getMode_salaire(),Op.getPeriode(),Op.getAnnuel_mois(),Op); 
+    addButton(lim,id,Op.getId(),Op.getTitre_id(),Op.getFonction(),Op.getType_contrat(),Op.getHoraires(),Op.getMode_salaire(),Op.getPeriode(),Op.getAnnuel_mois(),Op); 
          
+        
+                
         
        
          }                       Preview=new Button("Preview");
@@ -72,7 +71,7 @@ if(i<1)
             @Override
             public void actionPerformed(ActionEvent evt) {
                     
-new HomeForm().show();
+new HomeFormEmployer().show();
             }
             });
 }
@@ -90,7 +89,7 @@ new HomeForm().show();
          if(titre.equals(Id))
          {
         Button contact=new Button("Contacter"); 
-      Button btnDelCand= new Button("Delete Candidatures"+identif);   
+    
            TextArea idd=new TextArea("Num Candidature : "+identif);
         idd.setUIID("List opp");
         idd.setEditable(false);
@@ -107,7 +106,6 @@ new HomeForm().show();
         TextArea fonc=new TextArea("Fonction : "+fonction);
         fonc.setUIID("List opp");
         fonc.setEditable(false);
-        
           TextArea Type=new TextArea("TypeContrat : "+type_contrat);
         Type.setUIID("List opp");
         Type.setEditable(false);
@@ -130,8 +128,13 @@ new HomeForm().show();
         Annuel.setEditable(false);
         cnt.add(BorderLayout.EAST,BoxLayout.encloseY(idd,fonc,Type,Horaires,modeSalaire,Periode,Annuel));
   
+    
+      
+           
+         
+  
          add(cnt);
-        addAll(btnDelCand);
+        
   contact.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -140,13 +143,7 @@ new HomeForm().show();
             }
             });   
      
-        btnDelCand.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-             ServiceTask.getInstance().DeleteCandidature(identif);
-            
-            }
-            });  
+       
     } 
     }
     
