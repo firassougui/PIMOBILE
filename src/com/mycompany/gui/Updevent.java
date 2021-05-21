@@ -134,11 +134,11 @@ public class Updevent extends BaseForm {
          row5.add(new Label("description")).add(description);
         center.addComponent(row5);
 
-        Button imageev = new Button("choisir image");
+        
 
         
 
-        center.add(imageev);
+        
 
         this.addComponent(center);
         //  this.addComponent(getimage);

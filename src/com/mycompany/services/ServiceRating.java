@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 
+
 /**
  *
  * @author Firas
@@ -40,7 +41,7 @@ public class ServiceRating {
      
     boolean resultOK;
     public static ServiceRating instance;
-    private final ConnectionRequest req;
+    private ConnectionRequest req;
 
     public ServiceRating() {
         req = new ConnectionRequest();
@@ -55,66 +56,93 @@ public class ServiceRating {
     
 
 
-    public ArrayList<Rating> parseProduct(String jsonText) throws IOException {
+    public ArrayList<Rating> parseProduct(String jsonText)  {
         
-
-            products = new ArrayList<>();
-             JSONParser j = new JSONParser();
-                             System.out.println("json"+jsonText);
-
-            Map<String, Object> fournisseurListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
-            List<Map<String, Object>> list = (List<Map<String, Object>>) fournisseurListJson.get("root");
-            
-            if(list!=null)
-            {
-            for (Map<String, Object> obj : list) {
-                Rating p;
-                p = new Rating();
-                               float id = Float.parseFloat(obj.get("id").toString());
-                            
-                p.setId((int) id);
+            try {
+                products=new ArrayList<>();
+                JSONParser j = new JSONParser();// Instanciation d'un objet JSONParser permettant le parsing du résultat json
                 
-       
-                            
-                float nbr = Float.parseFloat(obj.get("idEv").toString());
-                p.setIdEv((int) nbr);
-                 float stars = Float.parseFloat(obj.get("stars").toString());
-                p.setStars( stars);
+                /*
+                On doit convertir notre réponse texte en CharArray à fin de
+                permettre au JSONParser de la lire et la manipuler d'ou vient
+                l'utilité de new CharArrayReader(json.toCharArray())
                 
-             
-
-                               
-                products.add(p);
-                System.out.println(products.get(0));
-
+                La méthode parse json retourne une MAP<String,Object> ou String est
+                la clé principale de notre résultat.
+                Dans notre cas la clé principale n'est pas définie cela ne veux pas
+                dire qu'elle est manquante mais plutôt gardée à la valeur par defaut
+                qui est root.
+                En fait c'est la clé de l'objet qui englobe la totalité des objets
+                c'est la clé définissant le tableau de tâches.
+                */
+                Map<String,Object> tasksListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
+                
+                /* Ici on récupère l'objet contenant notre liste dans une liste
+                d'objets json List<MAP<String,Object>> ou chaque Map est une tâche.
+                
+                Le format Json impose que l'objet soit définit sous forme
+                de clé valeur avec la valeur elle même peut être un objet Json.
+                Pour cela on utilise la structure Map comme elle est la structure la
+                plus adéquate en Java pour stocker des couples Key/Value.
+                
+                Pour le cas d'un tableau (Json Array) contenant plusieurs objets
+                sa valeur est une liste d'objets Json, donc une liste de Map
+                */
+                List<Map<String,Object>> list = (List<Map<String,Object>>)tasksListJson.get("root");
+                
+                
+                if(list!=null)
+                {
+                    for (Map<String,Object> obj : list) {
+                        
+                        Rating p = new Rating();
+                        float id = Float.parseFloat(obj.get("id").toString());
+                        
+                        p.setId((int) id);
+                        
+                        
+                        
+                        float nbr = Float.parseFloat(obj.get("idEv").toString());
+                        p.setIdEv((int) nbr);
+                        float stars = Float.parseFloat(obj.get("stars").toString());
+                        p.setStars( stars);
+                        
+                        
+                        
+                        
+                        products.add(p);
+                        System.out.println(products.get(0));
+                        
+                    }
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+               
+            } catch (IOException ex) {
+               
             }
-        }
-   
-            
-
-         
-        return products;
+             return products;
     }
     public ArrayList<Rating> getAllProductC(int idEV) {
         String url = "http://192.168.1.5:8000/star?id="+idEV;
-        req.setUrl(url);
+         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                try {
-                    products = parseProduct(new String(req.getResponseData()));
-                } catch (IOException ex) {
-                   
-                }
+                products = parseProduct(new String(req.getResponseData()));
                 req.removeResponseListener(this);
-
+ 
             }
-        }
-        );
+        });
         NetworkManager.getInstance().addToQueueAndWait(req);
-                       
-        return products;
+         return products;
     }
  
      /*

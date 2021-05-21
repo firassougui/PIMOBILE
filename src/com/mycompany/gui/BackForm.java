@@ -9,6 +9,7 @@ import com.codename1.components.ScaleImageLabel;
 import com.codename1.ui.Component;
 import com.codename1.ui.Display;
 import com.codename1.ui.FontImage;
+import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
@@ -25,21 +26,9 @@ import java.io.IOException;
  *
  * @author Firas
  */
-public class BackForm extends com.codename1.ui.Form {
+public class BackForm extends Form {
 
-    public BackForm() {
-    }
-
-    public BackForm(Layout contentPaneLayout) {
-        super(contentPaneLayout);
-    }
-
-    public BackForm(String title, Layout contentPaneLayout) {
-        super(title, contentPaneLayout);
-    }
-    
-    
-    public Component createLineSeparator() {
+        public Component createLineSeparator() {
         Label separator = new Label("", "WhiteSeparator");
         separator.setShowEvenIfBlank(true);
         return separator;
@@ -52,31 +41,61 @@ public class BackForm extends com.codename1.ui.Form {
         separator.setShowEvenIfBlank(true);
         return separator;
     }
+    public void installSidemenu(Resources res) {
+       Image selection = res.getImage("selection-in-sidemenu.png");
+        
+        
+        Image inboxImage = null;
+        if(isCurrentInbox()) inboxImage = selection;
 
-    protected void addSideMenu(Resources res) {
-        Toolbar tb = getToolbar();
-        Image img = res.getImage("profile-background.jpg");
-        if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
-            img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
-        }
-        ScaleImageLabel sl = new ScaleImageLabel(img);
-        sl.setUIID("BottomPad");
-        sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+        Image trendingImage = null;
+        if(isCurrentTrending()) trendingImage = selection;
         
-        tb.addComponentToSideMenu(LayeredLayout.encloseIn(
-                sl,
-                FlowLayout.encloseCenterBottom(
-                        new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
-        ));
+        Image calendarImage = null;
+        if(isCurrentCalendar()) calendarImage = selection;
         
-        tb.addMaterialCommandToSideMenu("Evenemts", FontImage.MATERIAL_UPDATE, e -> {
-            try {
-                new EventsBack(res).show();
-            } catch (IOException ex) {
-              
-            }
-        });
-   
+        Image statsImage = null;
+        if(isCurrentStats()) statsImage = selection;
+        
+       
+        
+       
+        
+          getToolbar().addCommandToSideMenu("Evenement", trendingImage, e -> {
+           try {
+               new EventsBack(res).show();
+           } catch (IOException ex) {
+               
+           }
+       });
+            getToolbar().addCommandToSideMenu("Opportunite", trendingImage, e -> {
+                new HomeForm().show();
+       });
+
+      
+    
+    
+        
+             // spacer
+        getToolbar().addComponentToSideMenu(new Label(" ", "SideCommand"));
+     
+    }
+
+        
+    protected boolean isCurrentInbox() {
+        return false;
+    }
+    
+    protected boolean isCurrentTrending() {
+        return false;
+    }
+
+    protected boolean isCurrentCalendar() {
+        return false;
+    }
+
+    protected boolean isCurrentStats() {
+        return false;
     }
 //-- DON'T EDIT ABOVE THIS LINE!!!
 }

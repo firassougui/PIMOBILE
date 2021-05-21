@@ -53,16 +53,21 @@ public class BaseForm extends Form {
         
        
         
-       
-        getToolbar().addCommandToSideMenu("Evenements", trendingImage, e -> new EventsForm(res).show());
-          getToolbar().addCommandToSideMenu("Evenementsback", trendingImage, e -> {
+       getToolbar().addCommandToOverflowMenu("Back", trendingImage, ev->{
            try {
                new EventsBack(res).show();
            } catch (IOException ex) {
-               
+              
            }
        });
-            getToolbar().addCommandToSideMenu("Produits", trendingImage, e -> {
+        getToolbar().addCommandToSideMenu("Evenements", trendingImage, e -> new EventsForm(res).show());
+
+            getToolbar().addCommandToSideMenu("Offre", trendingImage, e -> {
+                new HomeFormEmployer().show();
+       });
+            
+            
+                    getToolbar().addCommandToSideMenu("back", trendingImage, e -> {
            try {
                new EventsBack(res).show();
            } catch (IOException ex) {

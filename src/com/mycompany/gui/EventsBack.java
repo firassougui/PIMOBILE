@@ -37,7 +37,7 @@ import java.util.ArrayList;
  *
  * @author Firas
  */
-public class EventsBack extends BaseForm {
+public class EventsBack extends BackForm {
 Form current;
     public EventsBack() throws IOException {
         this(com.codename1.ui.util.Resources.getGlobalResources());

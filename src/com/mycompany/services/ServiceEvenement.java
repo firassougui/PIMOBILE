@@ -92,51 +92,7 @@ p.setPhoto(obj.get("photo").toString());
         }
         return products;
     }
-     public ArrayList<Participation> parseProduct1(String jsonText) {
-        try {
-
-            products1 = new ArrayList<>();
-            JSONParser j = new JSONParser();
-            Map<String, Object> productListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
-            List<Map<String, Object>> list = (List<Map<String, Object>>) productListJson.get("root");
-              System.out.println("liste:"+list);
-
-            for (Map<String, Object> obj : list) {
-                
-                Participation p = new Participation();
-                                            float id = Float.parseFloat(obj.get("id").toString());
-                            
-                p.setId((int) id);
-                             
-                
-       
-                                                p.setDate(obj.get("date").toString());
-                float nbr = Float.parseFloat(obj.get("idEmployer").toString());
-                p.setId_employer((int) nbr);
-                
-                
-              p.setDate(obj.get("email").toString());
-
-                                float nbr1 = Float.parseFloat(obj.get("idEvent").toString());
-                p.setId_event((int) nbr1);
-
-             
-               
-               
-                //p.setDate_expiration((LocalDate) obj.get("date_expiration"));      
-
-
-                products1.add(p);
-                System.out.println(products1.get(0));
-
-            }
-   
-            }
-
-               catch (IOException ex) {
-        }
-        return products1;
-    }
+    
      
      public ArrayList<Evenement> getAllProduct() {
         String url = "http://192.168.1.5:8000/partici";

@@ -80,7 +80,7 @@ public class DetailEvent extends com.codename1.ui.Form {
                 imgC.add(image);
             
         l.getAllStyles().setTextDecoration(Style.TEXT_DECORATION_UNDERLINE);
-        mb1.setTextLine4("Disponible :"+l.getText()+" ( "+p.getNombre_par()+" En Stock )");
+        mb1.setTextLine4("Disponible :"+l.getText()+" ( "+p.getNombre_par()+" Participants )");
         mb1.setTextLine2(p.getDescription());
         
         mb1.getAllStyles().setBorder(RoundRectBorder.create().strokeColor(0).
@@ -127,11 +127,11 @@ public class DetailEvent extends com.codename1.ui.Form {
      if(products ==null)
      {
          
-         slide.setProgress(0);
+         slide.setProgress(4);
      }
      else{
           System.out.println("size"+products.size());
-      // slide.setProgress(Float.valueOf(products.get(0).getStars()).intValue());
+      //slide.setProgress(Float.valueOf(products.get(0).getStars()).intValue());
      }
      b.add(FlowLayout.encloseCenter(slide));
        this.add(imgC);

@@ -1,0 +1,112 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.gui;
+
+import com.codename1.ui.Button;
+import com.codename1.ui.Command;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.FontImage;
+import com.codename1.ui.Form;
+import com.codename1.ui.Image;
+import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.layouts.BoxLayout;
+import com.mycompany.entities.Opportunite;
+import com.mycompany.services.ServiceTask;
+ 
+import com.codename1.io.FileSystemStorage;
+import com.codename1.io.Log;
+import com.codename1.ui.CN;
+import com.codename1.ui.util.ImageIO;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+/**
+ *
+ * @author bhk
+ */
+public class AddTaskForm extends Form{
+
+    public AddTaskForm(Form previous) {
+        /*
+        Le paramètre previous définit l'interface(Form) précédente.
+        Quelque soit l'interface faisant appel à AddTask, on peut y revenir
+        en utilisant le bouton back
+        */
+        setTitle("Add a new Opportunite");
+        setLayout(BoxLayout.y());
+      TextField Logo = new TextField("","UploadFile");
+               Button upload = new Button("UploadFile");
+Label image=new Label();
+
+    
+        
+        
+
+       
+    
+      
+        TextField Titre = new TextField("","Titre");
+        TextField Lieu= new TextField("", "Lieu");
+        TextField Desc = new TextField("","Description");
+        TextField Op_employeur_id= new TextField("", "Nom_emp");
+        TextField Nom_entreprise = new TextField("","Nom_entreprise");
+        TextField Taille_entreprise= new TextField("", "Taille_entreprise");
+        TextField Poste = new TextField("","Poste");
+        TextField Media= new TextField("", "Media");
+        TextField nombre_recrutement= new TextField("", "Nombre_recrutement");
+
+        
+        Button btnValider = new Button("Add Opportunite");
+        
+        btnValider.addActionListener((ActionEvent evt) -> {
+            if ((Titre.getText().length()==0)||(Lieu.getText().length()==0)
+               ||(Desc.getText().length()==0)||(Op_employeur_id.getText().length()==0)
+               ||(Nom_entreprise.getText().length()==0)||(Taille_entreprise.getText().length()==0)
+               ||(Poste.getText().length()==0)||(Media.getText().length()==0)
+                    ||(nombre_recrutement.getText().length()==0))     
+                  
+                Dialog.show("Alert", "Please fill all the fields", new Command("OK"));
+            else
+            {
+                try {      
+
+                    Opportunite t = new Opportunite(Integer.parseInt(Op_employeur_id.getText()),Titre.getText(),Lieu.getText(),Desc.getText(),Nom_entreprise.getText(),Taille_entreprise.getText(),
+                   Poste.getText(),Media.getText(),Integer.parseInt(nombre_recrutement.getText()),Logo.getText());
+                    if( ServiceTask.getInstance().addOpportunite(t))
+                        Dialog.show("Success","Connection accepted",new Command("OK"));
+                    else
+                        Dialog.show("ERROR", "Server error", new Command("OK"));
+                } catch (NumberFormatException e) {
+                    Dialog.show("ERROR", "Nbre recrutement and taille_entre must be a number", new Command("OK"));
+                }
+                
+            }
+        });
+        
+        addAll(upload,Logo,Titre,Lieu,Desc,Op_employeur_id,Nom_entreprise,Taille_entreprise,Poste,Media,nombre_recrutement,btnValider);
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK
+                , e-> previous.showBack()); // Revenir vers l'interface précédente
+                
+    }
+    
+    protected String saveFileToDevice(String hi, String ext) throws IOException {
+        URI uri;
+        try {
+            uri = new URI(hi);
+            String path = uri.getPath();
+            int index = hi.lastIndexOf("/");
+            hi = hi.substring(index + 1);
+            return hi;
+        } catch (URISyntaxException ex) {
+        }
+        return "hh";
+    }
+
+}

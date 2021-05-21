@@ -4,25 +4,40 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/myapp/MyApplication.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/utils/Statics.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/java/net/MalformedURLException.java</file>
-            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/AddEvent.java</file>
-            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/services/ServiceRating.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/services/ServiceEvenement.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/BackForm.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/Opportunite.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/java/net/ProtocolException.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/services/ServiceTask.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/ListTasksFormEmployer.java</file>
+            <file>file:/C:/wamp64/www/findmobile/build.xml</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/ListTasksForm.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/TypeEvent.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/Updevent.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/DeleteCandidatureForm.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/EventsBack.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/BaseForm.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/Task.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/myapp/MyApplication.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/AddEvent.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/UpdateOpporForm.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/services/ServiceRating.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/Candidature.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/AddCandidatureForm.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/EventsForm.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/DetailEvent.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/Rating.java</file>
-            <file>file:/C:/wamp64/www/findmobile/build.xml</file>
-            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/TypeEvent.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/AddTaskForm.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/HomeFormEmployer.java</file>
             <file>file:/C:/wamp64/www/findmobile/nbproject/build-impl.xml</file>
-            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/Updevent.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/Evenement.java</file>
-            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/EventsBack.java</file>
-            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/BaseForm.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/Mailing.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/services/ServiceTask1.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/entities/Participation.java</file>
             <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/services/UploadServices.java</file>
+            <file>file:/C:/wamp64/www/findmobile/src/com/mycompany/gui/HomeForm.java</file>
         </group>
     </open-files>
 </project-private>
