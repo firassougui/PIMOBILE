@@ -132,7 +132,7 @@ public class ServicePublication {
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
-                       ToastBar.showMessage("votre publication a été modifié hooooola", FontImage.MATERIAL_INFO);
+                       ToastBar.showMessage("votre publication a été modifié", FontImage.MATERIAL_INFO);
 
         return resultOK;
 

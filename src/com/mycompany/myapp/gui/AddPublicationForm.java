@@ -20,13 +20,13 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.entities.Publication;
 import com.mycompany.myapp.services.ServicePublication;
 import com.codename1.push.PushCallback;
-
+import com.codename1.ui.Label;
 /**
  *
  * @author m'amine
  */
 public class AddPublicationForm extends Form implements LocalNotificationCallback {
-
+private Label lbDate;
     public AddPublicationForm(Form previous) {
 
         setTitle("Ajouter une publication ");

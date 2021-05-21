@@ -12,6 +12,7 @@ import com.codename1.ui.Button;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.entities.Publication;
@@ -38,6 +39,8 @@ public class ListPublicForm extends Form {
         publications = ServicePublication.getInstance().getAllPubs();
         for (Publication obj : publications) {
             setLayout(BoxLayout.y());
+            
+            Button spComment = new Button("commentaire");
 
             Button spTitle = new Button();
             SpanLabel sp = new SpanLabel();
@@ -59,7 +62,16 @@ public class ListPublicForm extends Form {
 
                 ServicePublication.getInstance().deletePub(obj.getId());
                 new ListPublicForm(previous).show();
+
             });
+            spComment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                           new comment(obj.getId()).show();
+                           
+
+            }
+            });  
             Modif.addActionListener((evt) -> {
                 //ModifForumForm.tfDescriptionM.setVisible(false);
                 ModifForumForm.tfIdM.setText(String.valueOf(obj.getId()));
@@ -71,7 +83,7 @@ public class ListPublicForm extends Form {
 
             });
 
-            addAll(spTitle, Delete, Modif, sp);
+            addAll(spTitle,sp,spComment, Modif,Delete);
         }
         // sp.setText(new ServicePublication().getAllForums().toString());
 
